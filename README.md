@@ -128,29 +128,29 @@ npm test
 
 # Project Structure
 
-/multilingual-file-manager
-  /controllers
-    authController.js      # Handles authentication logic (register, login)
-    fileController.js      # Handles file management logic (CRUD operations)
-  /models
-    User.js                # User model for authentication
-    File.js                # File model for managing file metadata
-  /routes
-    authRoutes.js          # Routes for authentication
-    fileRoutes.js          # Routes for file operations
-  /middleware
-    authMiddleware.js      # Middleware for protecting routes
-  /utils
-    redisQueue.js          # Logic for Redis task queuing
-    i18n.js                # i18n configuration for multilingual support
-  /tests
-    auth.test.js           # Unit tests for authentication
-    file.test.js           # Unit tests for file management
-  app.js                   # Main application entry point
-  config.js                # Configuration file for MySQL and Redis
-  .env                     # Environment variables (DB, Redis, JWT secret)
-  package.json             # Project dependencies and scripts
-  README.md                # Project documentation
+-/multilingual-file-manager
+-  /controllers
+-    authController.js      # Handles authentication logic (register, login)
+-    fileController.js      # Handles file management logic (CRUD operations)
+-  /models
+-    User.js                # User model for authentication
+-    File.js                # File model for managing file metadata
+-  /routes
+-   authRoutes.js          # Routes for authentication
+-   fileRoutes.js          # Routes for file operations
+-  /middleware
+-    authMiddleware.js      # Middleware for protecting routes
+-  /utils
+-   redisQueue.js          # Logic for Redis task queuing
+-    i18n.js                # i18n configuration for multilingual support
+-  /tests
+-    auth.test.js           # Unit tests for authentication
+-    file.test.js           # Unit tests for file management
+-  app.js                   # Main application entry point
+-  config.js                # Configuration file for MySQL and Redis
+-  .env                     # Environment variables (DB, Redis, JWT secret)
+-  package.json             # Project dependencies and scripts
+-  README.md                # Project documentation
   
 
 # Authors
