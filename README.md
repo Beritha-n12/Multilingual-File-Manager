@@ -156,4 +156,5 @@ npm test
 # Authors
 
 [Beritha Niyotwagira](https://github.com/Beritha-n12)
+[Elisa Niyogisubizo](https://github.com/ElisaNiyogisubizo)
 
