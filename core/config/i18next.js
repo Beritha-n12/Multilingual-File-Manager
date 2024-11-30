@@ -18,4 +18,4 @@ i18next
     debug: process.env.NODE_ENV === 'development'
   });
 
-module.exports = { i18next, middleware };
+module.exports = { i18next, middleware }
