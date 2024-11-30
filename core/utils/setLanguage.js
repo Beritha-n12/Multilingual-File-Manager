@@ -6,4 +6,3 @@ const setLanguageMiddleware = (req, res, next) => {
     next();
 };
 module.exports = setLanguageMiddleware
-  
