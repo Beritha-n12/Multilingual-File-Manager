@@ -33,4 +33,4 @@ fileQueue.process(async (job) => {
   }
 });
 
-module.exports = fileQueue;
+module.exports = fileQueue
