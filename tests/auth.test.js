@@ -94,4 +94,3 @@ describe('Authentication Routes', function() {
     });
   });
 });
-
