@@ -1,5 +1,5 @@
 
-# This is our File Manager Application
+#  File Manager Application
 
 # Multilingual File Manager Application
 
