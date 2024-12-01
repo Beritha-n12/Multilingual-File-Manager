@@ -129,32 +129,52 @@ The application uses Jest for unit testing. To run the tests, use the following 
 
 npm test
 
-# Project Structure
+# Project Structure 
 
--/multilingual-file-manager
--  /controllers
--    authController.js      # Handles authentication logic (register, login)
--    fileController.js      # Handles file management logic (CRUD operations)
--  /models
--    User.js                # User model for authentication
--    File.js                # File model for managing file metadata
--  /routes
--   authRoutes.js          # Routes for authentication
--   fileRoutes.js          # Routes for file operations
--  /middleware
--    authMiddleware.js      # Middleware for protecting routes
--  /utils
--   redisQueue.js          # Logic for Redis task queuing
--    i18n.js                # i18n configuration for multilingual support
--  /tests
--    auth.test.js           # Unit tests for authentication
--    file.test.js           # Unit tests for file management
--  app.js                   # Main application entry point
--  config.js                # Configuration file for MySQL and Redis
--  .env                     # Environment variables (DB, Redis, JWT secret)
--  package.json             # Project dependencies and scripts
--  README.md                # Project documentation
-  
+Multilingual File Manager Application/
+├── core/                          # Main application logic
+├── config/                        # Configuration files
+│   ├── config.js                  # Application-wide settings
+│   ├── db.js                      # Database connection setup
+│   ├── i18next.js                 # i18n configuration for internationalization
+│   ├── queue.js                   # Redis queue setup for asynchronous tasks
+├── locales/                       # Localization folder for translations
+│   ├── en/                        # English translations
+│   │   └── translation.json       # Key-value pairs for English
+│   ├── fr/                        # French translations
+│       └── translation.json       # Key-value pairs for French
+├── middleware/                    # Custom middleware for authentication and validation
+│   ├── auth.middleware.js         # Middleware for authentication
+│   ├── validation.middleware.js   # Middleware for request validation
+├── models/                        # Database models
+│   ├── directory.model.js         # Directory schema
+│   ├── file.model.js              # File schema
+│   ├── user.model.js              # User schema
+├── routes/                        # Application routes
+│   ├── auth.route.js              # Routes for authentication (login, registration)
+│   ├── directory.route.js         # Routes for directory operations (CRUD)
+│   ├── file.route.js              # Routes for file operations (CRUD, uploads)
+├── scripts/                       # Utility scripts
+│   └── init.js                    # Initialization script (e.g., database seeding)
+├── utils/                         # Utility functions
+│   ├── cloudinary.js              # Cloudinary file upload helper
+│   ├── setLanguage.js             # Utility to set user language preferences
+│   ├── token.js                   # JWT token creation and verification
+│   ├── validate.js                # General validation functions
+├── tests/                         # Unit tests for application features
+│   ├── auth.test.js               # Tests for authentication routes and logic
+│   ├── directory.test.js          # Tests for directory operations
+│   ├── file.test.js               # Tests for file operations
+├── uploads/                       # Temporary storage for uploaded files
+│   ├── MCN profile.jpg            # Example file
+│   ├── logobuss.png               # Example file
+├── .env.example                   # Template for environment variables
+├── .gitignore                     # Files to ignore in version control
+├── README.md                      # Project documentation
+├── app.js                         # Main application entry point
+├── package.json                   # Project dependencies and metadata
+├── package-lock.json              # Dependency lockfile
+
 
 # Authors
 
