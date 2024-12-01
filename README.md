@@ -14,7 +14,7 @@ Unit Testing: Comprehensive unit tests for core functionalities including authen
 Technologies Used
 Node.js: For building the backend API and server.
 Express.js: For routing and handling HTTP requests.
-MySQL: For storing user data and file metadata.
+Mangodb: For storing user data and file metadata.
 Redis: For queuing asynchronous tasks (e.g., file uploads).
 i18next: For internationalization (i18n) to support multiple languages.
 Multer: For handling file uploads.
@@ -25,7 +25,6 @@ Jest: For unit testing.
 # Installation
 
 Node.js (v14 or later)
-MySQL (v5.7 or later)
 Redis (v5.0 or later)
 npm (v6 or later)
 
