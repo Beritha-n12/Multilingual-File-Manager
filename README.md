@@ -61,14 +61,16 @@ Create a .env file to store your environment variables:
 
 Added the following to the .env file:
 
+PORT=5000
+AWS_ACCESS_KEY_ID=BERITHA123
+AWS_SECRET_ACCESS_KEY=ELISA123
+AWS_REGION=us-east-1
+AWS_BUCKET_NAME=beritha-elisa-bucket
+MONGODB_URI=mongodb://localhost:27017/file_manager
+SESSION_SECRET=supersecretkey123456789
+REDIS_HOST=localhost
+REDIS_PORT=6379
 
-```DB_HOST=localhost```
-```DB_USER=root```
-```DB_PASSWORD=yourpassword```
-```DB_NAME=file_manager```
-```REDIS_HOST=localhost```
-```REDIS_PORT=6379```
-```JWT_SECRET=your-jwt-secret```
 
 
 Run the application:
