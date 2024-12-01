@@ -131,7 +131,7 @@ npm test
 
 # Project Structure 
 
-Multilingual File Manager Application/
+- Multilingual File Manager Application/
 -├── core/                          # Main application logic
 -├── config/                        # Configuration files
 -│   ├── config.js                  # Application-wide settings
