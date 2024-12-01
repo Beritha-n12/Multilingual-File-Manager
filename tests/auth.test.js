@@ -5,7 +5,7 @@ const request = require('supertest');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../src/models/user.model');
+const User = require('../core/models/user.model');
 const app = require('../app');
 
 describe('Authentication Routes', function() {
