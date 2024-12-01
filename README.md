@@ -1,4 +1,3 @@
-
 #  File Manager Application
 
 # Multilingual File Manager Application
@@ -93,7 +92,7 @@ Request body: { "email": "string", "password": "string" }
 
 ```Response: { "token": "JWT_TOKEN" }```
 
-File Management (CRUD)
+# File Management (CRUD)
 
 POST /files: Upload a file.
 Request body: Form-data with a file (file field).
@@ -113,7 +112,7 @@ DELETE /files/:fileId: Delete a file.
 
 ```Response: { "message": "File deleted successfully" }```
 
-Multilingual Support
+# Multilingual Support
 
 The user interface supports multiple languages. The default language is English, but you can add more languages by updating the i18next configuration.
 
@@ -123,7 +122,7 @@ The application uses Redis and Bull to queue file upload tasks asynchronously. T
 
 Tasks like file uploads are added to the queue and processed by a worker.
 
-#Unit Testing
+# Unit Testing
 
 The application uses Jest for unit testing. To run the tests, use the following command:
 
@@ -132,48 +131,48 @@ npm test
 # Project Structure 
 
 - Multilingual File Manager Application/
--├── core/                          # Main application logic
--├── config/                        # Configuration files
--│   ├── config.js                  # Application-wide settings
--│   ├── db.js                      # Database connection setup
--│   ├── i18next.js                 # i18n configuration for internationalization
--│   ├── queue.js                   # Redis queue setup for asynchronous tasks
--├── locales/                       # Localization folder for translations
--│   ├── en/                        # English translations
--│   │   └── translation.json       # Key-value pairs for English
--│   ├── fr/                        # French translations
--│       └── translation.json       # Key-value pairs for French
--├── middleware/                    # Custom middleware for authentication and validation
--│   ├── auth.middleware.js         # Middleware for authentication
--│   ├── validation.middleware.js   # Middleware for request validation
--├── models/                        # Database models
--│   ├── directory.model.js         # Directory schema
--│   ├── file.model.js              # File schema
--│   ├── user.model.js              # User schema
--├── routes/                        # Application routes
--│   ├── auth.route.js              # Routes for authentication (login, registration)
--│   ├── directory.route.js         # Routes for directory operations (CRUD)
--│   ├── file.route.js              # Routes for file operations (CRUD, uploads)
--├── scripts/                       # Utility scripts
--│   └── init.js                    # Initialization script (e.g., database seeding)
--├── utils/                         # Utility functions
--│   ├── cloudinary.js              # Cloudinary file upload helper
--│   ├── setLanguage.js             # Utility to set user language preferences
--│   ├── token.js                   # JWT token creation and verification
--│   ├── validate.js                # General validation functions
--├── tests/                         # Unit tests for application features
--│   ├── auth.test.js               # Tests for authentication routes and logic
--│   ├── directory.test.js          # Tests for directory operations
--│   ├── file.test.js               # Tests for file operations
--├── uploads/                       # Temporary storage for uploaded files
--│   ├── MCN profile.jpg            # Example file
--│   ├── logobuss.png               # Example file
--├── .env.example                   # Template for environment variables
--├── .gitignore                     # Files to ignore in version control
--├── README.md                      # Project documentation
--├── app.js                         # Main application entry point
--├── package.json                   # Project dependencies and metadata
--├── package-lock.json              # Dependency lockfile
+- ├── core/                          # Main application logic
+- ├── config/                        # Configuration files
+- │   ├── config.js                  # Application-wide settings
+- │   ├── db.js                      # Database connection setup
+- │   ├── i18next.js                 # i18n configuration for internationalization
+- │   ├── queue.js                   # Redis queue setup for asynchronous tasks
+- ├── locales/                       # Localization folder for translations
+- │   ├── en/                        # English translations
+- │   │   └── translation.json       # Key-value pairs for English
+- │   ├── fr/                        # French translations
+- │       └── translation.json       # Key-value pairs for French
+- ├── middleware/                    # Custom middleware for authentication and validation
+- │   ├── auth.middleware.js         # Middleware for authentication
+- │   ├── validation.middleware.js   # Middleware for request validation
+- ├── models/                        # Database models
+- │   ├── directory.model.js         # Directory schema
+- │   ├── file.model.js              # File schema
+- │   ├── user.model.js              # User schema
+- ├── routes/                        # Application routes
+- │   ├── auth.route.js              # Routes for authentication (login, registration)
+- │   ├── directory.route.js         # Routes for directory operations (CRUD)
+- │   ├── file.route.js              # Routes for file operations (CRUD, uploads)
+- ├── scripts/                       # Utility scripts
+- │   └── init.js                    # Initialization script (e.g., database seeding)
+- ├── utils/                         # Utility functions
+- │   ├── cloudinary.js              # Cloudinary file upload helper
+- │   ├── setLanguage.js             # Utility to set user language preferences
+- │   ├── token.js                   # JWT token creation and verification
+- │   ├── validate.js                # General validation functions
+- ├── tests/                         # Unit tests for application features
+- │   ├── auth.test.js               # Tests for authentication routes and logic
+- │   ├── directory.test.js          # Tests for directory operations
+- │   ├── file.test.js               # Tests for file operations
+- ├── uploads/                       # Temporary storage for uploaded files
+- │   ├── MCN profile.jpg            # Example file
+- │   ├── logobuss.png               # Example file
+- ├── .env.example                   # Template for environment variables
+- ├── .gitignore                     # Files to ignore in version control
+- ├── README.md                      # Project documentation
+- ├── app.js                         # Main application entry point
+- ├── package.json                   # Project dependencies and metadata
+- ├── package-lock.json              # Dependency lockfile
 
 
 # Authors
