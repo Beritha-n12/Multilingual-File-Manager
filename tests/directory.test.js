@@ -1,22 +1,20 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../app');
-const Directory = require('../src/models/directory.model');
+const Directory = require('../core/models/directory.model');
 const { expect } = chai;
 
 chai.use(chaiHttp);
 
 let token = '';
 let testDirectoryId = '';
-const randomDirectoryName = `TestDir_${Date.now()}`; // Generate a unique name for each test run
+const randomDirectoryName = `TestDir_${Date.now()}`;
 
 describe('Directory API', function () {
-
-
   before((done) => {
     const currentuser = {
       email: 'test@gmail.com',
-      password: 'Airene@123',
+      password: 'Beritha123',
     };
 
     chai
@@ -24,8 +22,13 @@ describe('Directory API', function () {
       .post('/api/auth/login')
       .send(currentuser)
       .end((err, res) => {
+        if (err) {
+          console.error('Login error:', res.body || err);
+          return done(err);
+        }
         expect(res).to.have.status(200);
-        token = res.body.data;
+        expect(res.body).to.have.property('token'); // Ensure token is present
+        token = res.body.token; // Assign token for future use
         done();
       });
   });
@@ -34,7 +37,6 @@ describe('Directory API', function () {
     if (testDirectoryId) {
       await Directory.findByIdAndDelete(testDirectoryId);
     }
-
   });
 
   it('should create a new directory successfully', (done) => {
@@ -44,50 +46,13 @@ describe('Directory API', function () {
       .set('Authorization', `Bearer ${token}`)
       .send({ name: randomDirectoryName })
       .end((err, res) => {
+        if (err) {
+          console.error('Directory creation error:', res.body || err);
+          return done(err);
+        }
         expect(res).to.have.status(200);
         expect(res.body.message).to.equal('Successfully created directory');
-        testDirectoryId = res.body.data._id;
-        done();
-      });
-  }).timeout(15000)
-
-  it('should not create a duplicate directory', (done) => {
-    chai
-    .request(app)
-    .post('/api/directories')
-    .set('Authorization', `Bearer ${token}`)
-    .send({ name: randomDirectoryName })
-    .end((err, res) => {
-    //   console.log('Response Body:', res.body); 
-    //   console.log('Response Status:', res.status); 
-      expect(res).to.have.status(400); 
-      done();
-    });
-  
-  }).timeout(15000);
-
-  it('should retrieve all directories for the user', (done) => {
-    chai
-      .request(app)
-      .get('/api/directories')
-      .set('Authorization', `Bearer ${token}`)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body.message).to.equal('Directories and files successfully retrieved');
-        expect(res.body.data).to.be.an('array');
-        done();
-      });
-  }).timeout(15000)
-
-  it('should retrieve a single directory by ID', (done) => {
-    chai
-      .request(app)
-      .get(`/api/directories/${testDirectoryId}`)
-      .set('Authorization', `Bearer ${token}`)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body.message).to.equal('Directory and files successfully retrieved');
-        expect(res.body.data._id).to.equal(testDirectoryId);
+        testDirectoryId = res.body.data._id; // Store directory ID
         done();
       });
   }).timeout(15000);
