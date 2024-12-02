@@ -159,6 +159,7 @@ Multilingual File Manager Application/
 ├── .env.example           # Environment variables template
 ├── app.js                 # Main application entry point
 └── README.md              # Project documentation
+
 Authors
-Beritha Niyotwagira
-Elisa Niyogisubizo
+Niyotwagira Beritha 
+Niyogisubizo Elisa 
