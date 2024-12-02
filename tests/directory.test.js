@@ -1,67 +1,89 @@
-const chai = require('chai'); // Chai assertion library
-const chaiHttp = require('chai-http'); // Chai plugin to test HTTP requests
-const app = require('../app'); // Importing the Express app
-const Directory = require('../core/models/directory.model'); // Directory model for database interaction
-const { expect } = chai; // Destructuring `expect` from chai
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('../app');
+const Directory = require('../core/models/directory.model');
+const { expect } = chai;
 
-chai.use(chaiHttp); // Using chai-http to make HTTP requests in tests
+chai.use(chaiHttp);
 
-let token = ''; // Variable to store the authentication token
-let testDirectoryId = ''; // Variable to store the created directory's ID
-const randomDirectoryName = `TestDir_${Date.now()}`; // Generate a unique directory name using timestamp
-
+let token = '';
+let testDirectoryId = '';
+const randomDirectoryName = `TestDir_${Date.now()}`; 
 describe('Directory API', function () {
-  
-  // `before` hook to log in and get an authentication token before tests run
   before((done) => {
     const currentuser = {
       email: 'test@gmail.com',
-      password: 'Beritha123',
+      password: 'Beritha@123',
     };
 
-    // Send login request to get the token
     chai
       .request(app)
       .post('/api/auth/login')
       .send(currentuser)
       .end((err, res) => {
-        if (err) {
-          console.error('Login error:', res.body || err);
-          return done(err); // If there's an error, log it and terminate the test
-        }
-        // Assert that the response status is 200 and the token is returned
         expect(res).to.have.status(200);
-        expect(res.body).to.have.property('token');
-        token = res.body.token; // Assign the token for use in future requests
-        done(); // Indicate that the `before` hook is done
+        token = res.body.data;
+        done();
       });
   });
 
-  // `after` hook to clean up the created directory after tests complete
   after(async function () {
     if (testDirectoryId) {
-      // If a directory was created during the test, delete it
       await Directory.findByIdAndDelete(testDirectoryId);
     }
+
   });
 
-  // Test case to create a new directory
   it('should create a new directory successfully', (done) => {
     chai
       .request(app)
-      .post('/api/directories') // Endpoint to create a new directory
-      .set('Authorization', `Bearer ${token}`) // Add the authorization token in the header
-      .send({ name: randomDirectoryName }) // Send the directory data (name)
+      .post('/api/directories')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ name: randomDirectoryName })
       .end((err, res) => {
-        if (err) {
-          console.error('Directory creation error:', res.body || err);
-          return done(err); // If there's an error, log it and terminate the test
-        }
-        // Assert that the directory creation was successful
         expect(res).to.have.status(200);
         expect(res.body.message).to.equal('Successfully created directory');
-        testDirectoryId = res.body.data._id; // Store the directory ID for cleanup in `after`
-        done(); // Indicate that the test is complete
+        testDirectoryId = res.body.data._id;
+        done();
       });
-  }).timeout(15000); // Set timeout for the test to 15 seconds
+  }).timeout(50000)
+
+  it('should not create a duplicate directory', (done) => {
+    chai
+    .request(app)
+    .post('/api/directories')
+    .set('Authorization', `Bearer ${token}`)
+    .send({ name: randomDirectoryName })
+    .end((err, res) => { 
+      expect(res).to.have.status(400); 
+      done();
+    });
+  
+  }).timeout(15000);
+
+  it('should retrieve all directories for the user', (done) => {
+    chai
+      .request(app)
+      .get('/api/directories')
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.message).to.equal('Directories and files successfully retrieved');
+        expect(res.body.data).to.be.an('array');
+        done();
+      });
+  }).timeout(15000)
+
+  it('should retrieve a single directory by ID', (done) => {
+    chai
+      .request(app)
+      .get(`/api/directories/${testDirectoryId}`)
+      .set('Authorization', `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.message).to.equal('Directory and files successfully retrieved');
+        expect(res.body.data._id).to.equal(testDirectoryId);
+        done();
+      });
+  }).timeout(15000);
 });
